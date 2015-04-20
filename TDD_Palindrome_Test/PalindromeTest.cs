@@ -47,27 +47,58 @@ namespace TDD_Palindrome.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
+        //[ExpectedException(typeof(ArgumentNullException))]
         public void IsPalindromeThrowsArgumentNullException()
         {
+
             //Arrange
             string value =  null;
 
-            //Act
-            bool actual = _palindromeFinder.IsPalindrome(value);
-           
+            try
+            {
+                //Act
+                bool actual = _palindromeFinder.IsPalindrome(value);
+                
+                //If no exceptions is thrown, then it fails
+                Assert.Fail("Expected ArgumentNullException");
+
+            }
+            catch (ArgumentNullException)
+            {
+                
+                //This is what should happen No Fail,
+            }
+            catch
+            {
+                Assert.Fail("Expected ArgumentNullException");
+            }
+          
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        //[ExpectedException(typeof(ArgumentException))]
         public void IsPalindromeThrowsArgumentException()
         {
             //Arrange
             string value = "a";
 
+            try
+            {
             //Act
             bool actual = _palindromeFinder.IsPalindrome(value);
+             //If no exceptions is thrown, then it fails
+                Assert.Fail("Expected ArgumentException");
 
+            }
+            catch (ArgumentException)
+            {
+                
+                //This is what should happen No Fail,
+            }
+            catch
+            {
+                Assert.Fail("Expected ArgumentException");
+            }
         }
 
         #endregion Negative Cases
